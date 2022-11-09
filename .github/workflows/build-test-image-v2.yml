@@ -60,7 +60,9 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
       env:
         NODE_HW: CPUS=2
-      options: --cpus 2
+      options: |
+        --cpus 2
+        --privileged
 
     steps:
       - uses: actions/checkout@v3
