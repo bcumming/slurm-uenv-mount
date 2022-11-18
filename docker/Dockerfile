@@ -4,6 +4,7 @@ RUN zypper install -y\
     fuse3-devel\
     squashfs\
     python3-pip\
+    rpm-build\
     mpich\
     mpich-devel\
     vim\
@@ -30,10 +31,10 @@ RUN zypper install -y\
 # install meson and ninja via pip (packages are too old)
 RUN python3 -m pip install --upgrade pip && python3 -m pip install meson ninja
 
-RUN --mount=type=bind,source=../,target=/CODE \
-    CPPFLAGS=-I$SLURM_ROOT/include meson setup --prefix=$SLURM_ROOT /build /CODE \
-    && ninja install -C /build \
-    && echo "required $SLURM_ROOT/lib64/libslurm-uenv-mount.so" > $SLURM_ROOT/etc/plugstack.conf
+# RUN --mount=type=bind,source=../,target=/CODE \
+#     CPPFLAGS=-I$SLURM_ROOT/include meson setup --prefix=$SLURM_ROOT /build /CODE \
+#     && ninja install -C /build \
+#     && echo "required $SLURM_ROOT/lib64/libslurm-uenv-mount.so" > $SLURM_ROOT/etc/plugstack.conf
 
 RUN mkdir /user-environment
 
