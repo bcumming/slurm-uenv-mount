@@ -66,9 +66,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - run: make -f ci/Makefile build install
-      - run: make -f ci/Makefile test
-      
+      - run: make build install
+      - run: make test
       - run: make rpm
       
       - name: Delete old release assets
